@@ -3,7 +3,7 @@ import axios from 'axios'
 import { CoinList } from '../config/api'
 import { CryptoState } from '../CryptoContext'
 import Container from '@material-ui/core/Container';
-import { createTheme, TextField, ThemeProvider, Typography } from '@material-ui/core'
+import { createTheme, LinearProgress, TableContainer, TextField, ThemeProvider, Typography } from '@material-ui/core'
 
 const CoinsList = () => {
     const { currency } = CryptoState();
@@ -45,6 +45,16 @@ const CoinsList = () => {
               styel={{ marginBottom: 20, width: '100%'}}
               onChange={(e) => setSearch(e.target.value)}
               />
+
+              <TableContainer>
+                  {
+                      loading ? (
+                        <LinearProgress style={{ backgroundColor: 'gold'}} />  
+                      ):(
+                          <></>
+                      )
+                  }
+              </TableContainer>
           </Container>
       </ThemeProvider>
   )
