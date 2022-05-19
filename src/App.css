@@ -10,3 +10,8 @@ a{
   text-decoration: none;
   color: gold;
 }
+.app{
+  background: #14161a;
+  color: white;
+  min-height: 100vh;
+}
