@@ -79,7 +79,7 @@ const CoinsList = () => {
         <TextField
           label="Search for a Crypto Currency..."
           variant="outlined"
-          styel={{ marginBottom: 20, width: "100%" }}
+          style={{ marginBottom: 20, width: "100%" }}
           onChange={(e) => setSearch(e.target.value)}
         />
 
@@ -120,7 +120,7 @@ const CoinsList = () => {
                       <TableCell
                         component="th"
                         scope="row"
-                        styles={{
+                        style={{
                           display: "flex",
                           gap: 15,
                         }}
