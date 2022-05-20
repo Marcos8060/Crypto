@@ -19,6 +19,8 @@ import TableHead from "@material-ui/core/TableHead";
 import { useNavigate } from "react-router-dom";
 import { makeStyles } from "@material-ui/core/styles";
 import { numberWithCommas } from "./Carousel";
+import { Pagination } from "@material-ui/lab";
+import { display } from "@mui/system";
 
 const useStyles = makeStyles(() => ({
     row:{
@@ -28,6 +30,11 @@ const useStyles = makeStyles(() => ({
             backgroundColor: '#131111',
         },
         fontFamily: 'Montserrat'
+    },
+    pagination:{
+        '& .MuiPaginationItem-root':{
+            color: 'gold'
+        }
     }
 }));
 
@@ -38,6 +45,7 @@ const CoinsList = () => {
   const [coins, setCoins] = useState([]);
   const [loading, setLoading] = useState(false);
   const [search, setSearch] = useState();
+  const [page,setPage] = useState(1)
 
   useEffect(() => {
     const getCoinsTable = async () => {
@@ -108,7 +116,9 @@ const CoinsList = () => {
                 </TableRow>
               </TableHead>
               <TableBody>
-                {coins.map((row) => {
+                {coins
+                 .slice((page -1) * 10,(page - 1) * 10 + 10)
+                .map((row) => {
                   const profit = row.price_change_percentage_24h > 0;
 
                   return (
@@ -181,6 +191,21 @@ const CoinsList = () => {
             </Table> 
           )}
         </TableContainer>
+
+        <Pagination
+        style={{
+            padding: 20,
+            width: '100%',
+            display: 'flex',
+            justifyContent: 'center'
+        }}
+        classes={{ ul: classes.pagination }}
+        count={(coins.length / 10).toFixed(0)}
+        onChange={(_, value) =>{
+            setPage(value);
+            window.scroll(0, 450)
+        }}
+         />
       </Container>
     </ThemeProvider>
   );
